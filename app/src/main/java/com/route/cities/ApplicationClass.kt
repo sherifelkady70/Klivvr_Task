@@ -2,7 +2,9 @@ package com.route.cities
 
 import android.app.Application
 import android.content.Context
+import dagger.hilt.android.HiltAndroidApp
 
+@HiltAndroidApp
 class ApplicationClass :Application(){
     companion object {
         lateinit var context: Context
