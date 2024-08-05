@@ -1,6 +1,6 @@
 package com.route.cities.models
 
-data class Cities(
+data class City(
 	val country: String? = null,
 	val coord: Coord? = null,
 	val name: String? = null,
