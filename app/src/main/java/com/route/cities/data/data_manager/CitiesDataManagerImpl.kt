@@ -1,19 +1,18 @@
-package com.route.cities.data
+package com.route.cities.data.data_manager
 
-import android.app.Application
 import android.content.Context
 import android.content.res.AssetManager
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import com.route.cities.data.contract.CitiesDataManagerInterface
 import com.route.cities.data.models.City
-import dagger.hilt.android.qualifiers.ApplicationContext
 import java.io.BufferedReader
 import java.io.InputStreamReader
 import javax.inject.Inject
 
-class CitiesDataManager @Inject constructor(
+class CitiesDataManagerImpl @Inject constructor(
     private val context: Context
-) :CitiesDataManagerInterface{
+) : CitiesDataManagerInterface {
     override suspend fun getCities() : List<City>{
         val assetManager : AssetManager = context.assets
         val inputStream = assetManager.open("cities.json")

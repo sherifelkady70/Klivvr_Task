@@ -1,4 +1,4 @@
-package com.route.cities.data
+package com.route.cities.data.contract
 
 import com.route.cities.data.models.City
 

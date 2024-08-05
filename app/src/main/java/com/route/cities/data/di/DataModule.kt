@@ -1,17 +1,17 @@
-package com.route.cities.data
+package com.route.cities.data.di
 
-import dagger.Binds
+import com.route.cities.data.data_manager.CitiesDataManagerImpl
+import com.route.cities.data.contract.CitiesDataManagerInterface
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
  object DataModule {
     @Provides
-     fun provideCitiesDataManager(impl : CitiesDataManager)
+     fun provideCitiesDataManager(impl : CitiesDataManagerImpl)
     : CitiesDataManagerInterface {
          return impl
      }

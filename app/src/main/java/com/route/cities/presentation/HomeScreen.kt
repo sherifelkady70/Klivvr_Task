@@ -28,6 +28,7 @@ fun HomeScreen(){
     }
     //val cities = CitiesDataManager(ApplicationClass.context).getCities()
     Column(modifier = Modifier.padding(8.dp)){
+        Spacer(modifier = Modifier.padding(10.dp))
         TextField(value = "Search", onValueChange = {} , Modifier.fillMaxWidth())
         Spacer(modifier = Modifier.padding(5.dp))
         LazyColumn {
@@ -50,6 +51,7 @@ fun CityDetails(city:City){
                 Spacer(modifier = Modifier.padding(8.dp))
                 Text(text = city.country.toString())
             }
+            Spacer(modifier = Modifier.padding(10.dp))
             Row {
                 Text(text = city.coord?.lon.toString())
                 Spacer(modifier = Modifier.padding(8.dp))
