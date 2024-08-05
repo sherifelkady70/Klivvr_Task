@@ -13,6 +13,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.route.cities.data.CitiesDataManager
+import com.route.cities.presentation.HomeScreen
 import com.route.cities.ui.theme.CitiesTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -22,15 +23,8 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            val cities = CitiesDataManager(context = this).getCities()
-            Log.d("TAG","$cities")
             CitiesTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
+                HomeScreen()
             }
         }
     }

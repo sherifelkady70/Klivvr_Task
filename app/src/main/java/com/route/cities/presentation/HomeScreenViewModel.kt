@@ -1,9 +1,29 @@
 package com.route.cities.presentation
 
+import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.viewmodel.viewModelFactory
+import com.route.cities.data.models.City
+import com.route.cities.data.repository.CitiesRepositoryInterface
 import dagger.hilt.android.HiltAndroidApp
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
-@HiltAndroidApp
-class HomeScreenViewModel : ViewModel() {
-
+@HiltViewModel
+class HomeScreenViewModel @Inject constructor(
+    private val citiesRepo :CitiesRepositoryInterface
+): ViewModel() {
+    val state = mutableStateOf<List<City>>(listOf())
+    fun getData() {
+        viewModelScope.launch(Dispatchers.IO) {
+            val cities = citiesRepo.getCities()
+            withContext(Dispatchers.Main){
+                state.value = cities
+            }
+        }
+    }
 }

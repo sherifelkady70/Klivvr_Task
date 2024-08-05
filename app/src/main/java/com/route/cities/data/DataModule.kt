@@ -3,12 +3,16 @@ package com.route.cities.data
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
 @Module
-@Singleton
-abstract class DataModule {
-    @Binds
-    abstract fun provideCitiesDataManager(impl : CitiesDataManager)
-    : CitiesDataManagerInterface
+@InstallIn(SingletonComponent::class)
+ object DataModule {
+    @Provides
+     fun provideCitiesDataManager(impl : CitiesDataManager)
+    : CitiesDataManagerInterface {
+         return impl
+     }
 }

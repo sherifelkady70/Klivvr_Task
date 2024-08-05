@@ -1,14 +1,16 @@
 package com.route.cities.data.repository
 
-import dagger.Binds
 import dagger.Module
+import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ViewModelComponent
+import dagger.hilt.components.SingletonComponent
 
 @Module
-@InstallIn(ViewModelComponent::class)
-abstract class RepoModule {
+@InstallIn(SingletonComponent::class)
+ object RepoModule {
 
-    @Binds
-    abstract fun provideCitiesRepository(impl : CitiesRepositoryImpl) : CitiesRepositoryInterface
+    @Provides
+     fun provideCitiesRepository(impl : CitiesRepositoryImpl) : CitiesRepositoryInterface {
+         return impl
+     }
 }
