@@ -1,4 +1,4 @@
-package com.route.cities.models
+package com.route.cities.data.models
 
 data class City(
 	val country: String? = null,

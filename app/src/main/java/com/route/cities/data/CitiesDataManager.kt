@@ -1,10 +1,10 @@
-package com.route.cities
+package com.route.cities.data
 
 import android.content.Context
 import android.content.res.AssetManager
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import com.route.cities.models.City
+import com.route.cities.data.models.City
 import java.io.BufferedReader
 import java.io.InputStreamReader
 
