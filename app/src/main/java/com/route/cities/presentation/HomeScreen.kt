@@ -16,12 +16,16 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.SearchBar
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -30,6 +34,7 @@ import com.route.cities.data.models.Coord
 import kotlinx.coroutines.flow.update
 import org.w3c.dom.Text
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(onClick: (City) -> Unit){
     val viewModel = hiltViewModel<HomeScreenViewModel>()
@@ -37,12 +42,21 @@ fun HomeScreen(onClick: (City) -> Unit){
 //        viewModel.getData()
 //    }
     val searchText by viewModel.searchQuery.collectAsState()
+    var text by remember {
+        mutableStateOf("")
+    }
+    var action by remember {
+        mutableStateOf(false)
+    }
     Column(modifier = Modifier.padding(8.dp)){
         Spacer(modifier = Modifier.padding(10.dp))
-        TextField(
-            value = searchText,
-            onValueChange = { viewModel.searchAlgorithm(it) },
-            Modifier.fillMaxWidth())
+        SearchBar(query = text,
+            onQueryChange = {text = it},
+            onSearch = {viewModel.searchAlgorithm(it)},
+            active = action,
+            onActiveChange = {action=it}) {
+
+        }
         Spacer(modifier = Modifier.padding(5.dp))
         LazyColumn {
             items(viewModel.state.value){ city ->
