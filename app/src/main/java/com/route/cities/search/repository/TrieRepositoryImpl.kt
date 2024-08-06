@@ -3,9 +3,9 @@ package com.route.cities.search.repository
 import com.route.cities.search.Trie
 import javax.inject.Inject
 
-class SearchRepositoryImpl @Inject constructor(
+class TrieRepositoryImpl @Inject constructor(
     private val trie: Trie
-): SearchRepository {
+): TrieRepository {
     override suspend fun insert(word: String) {
         trie.insert(word)
     }
