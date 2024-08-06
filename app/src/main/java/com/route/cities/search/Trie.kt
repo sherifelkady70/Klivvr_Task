@@ -4,7 +4,7 @@ class Trie {
 
     private val root = TrieNode()
 
-    fun insert(word: String) {
+    suspend fun insert(word: String) {
         var node = root
         for (char in word) {
             node = node.children.getOrPut(char) { TrieNode() }
@@ -12,7 +12,7 @@ class Trie {
         node.isEndOfWord = true
     }
 
-    fun search(prefix: String): List<String> {
+    suspend fun search(prefix: String): List<String> {
         val results = mutableListOf<String>()
         var node = root
         for (char in prefix) {
@@ -22,7 +22,7 @@ class Trie {
         return results
     }
 
-    private fun findWords(node: TrieNode, prefix: String, results: MutableList<String>) {
+   private suspend fun findWords(node: TrieNode, prefix: String, results: MutableList<String>) {
         if (node.isEndOfWord) {
             results.add(prefix)
         }
