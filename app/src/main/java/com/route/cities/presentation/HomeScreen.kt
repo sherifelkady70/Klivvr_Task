@@ -20,6 +20,8 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -32,11 +34,12 @@ fun HomeScreen(onClick: (City) -> Unit){
 //    LaunchedEffect(key1 = Unit) {
 //        viewModel.getData()
 //    }
+    val searvhQ by viewModel.searchQuery.collectAsState()
     Column(modifier = Modifier.padding(8.dp)){
         Spacer(modifier = Modifier.padding(10.dp))
         TextField(
-            value = "",
-            onValueChange = {  },
+            value = searvhQ,
+            onValueChange = {viewModel.searchQuery.value},
             Modifier.fillMaxWidth(),
             label = { Text(text = "Search")})
         Spacer(modifier = Modifier.padding(5.dp))

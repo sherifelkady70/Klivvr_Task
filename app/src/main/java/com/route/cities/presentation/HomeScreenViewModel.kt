@@ -20,7 +20,6 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeScreenViewModel @Inject constructor(
     private val citiesRepo : CitiesRepositoryInterface,
-    private val trieRepo : TrieRepository
 ): ViewModel() {
     val state = mutableStateOf<List<City>>(listOf())
     private val _search = MutableStateFlow("")
@@ -32,27 +31,44 @@ class HomeScreenViewModel @Inject constructor(
 
     init {
         getData()
+        searchAlgorithm()
     }
     private fun getData() {
         viewModelScope.launch(Dispatchers.IO) {
             val cities = citiesRepo.getCities()
             withContext(Dispatchers.Main){
                 state.value = cities
-               // filteredList.value = cities
             }
         }
     }
 
-
-    private fun buildTrie(cities:List<City>) : Trie {
-        val trie = Trie()
-        viewModelScope.launch{
-            cities.forEach { city ->
-                trie.insert(city.name!!)
-            }
-        }
-        return trie
+    fun searchAlgorithm(){
+//        viewModelScope.launch{
+//            val trie = trieRepo.buildTrie(state.value)
+//            searchQuery.collect { query ->
+//                val results = trieRepo.search(trie,query,state.value)
+//                state.value = results
+//            }
+//        }
     }
+
+//    fun searchCities(trie:Trie , query:String) : List<City>{
+//        viewModelScope.launch{
+//            val results = mutableListOf<String>()
+//            var node = trie.root
+//            for (char in query) {
+//                node = node.children[char] ?: return emptyList()
+//            }
+//
+//            trieRepo.search(node, query, results)
+//
+//            // Filter cities based on complete names
+//            return citiesRepo.getCities().filter { city ->
+//                results.contains(city.name)
+//            }
+//        }
+//    }
+
 
 }
 
