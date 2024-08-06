@@ -34,9 +34,10 @@ The task is the presentation of a group of cities around the world and when ever
 video of app for this step only.
 [video](https://drive.google.com/file/d/1uQujkG7FLDLDmD2zaIxq5nYTZFbmglMg/view?usp=drive_link)
 
-# Make location funtion to display google maps by Intent object (messaging ibject) , used standard action Intent.ACTION_VIEW to tell the system i want to view something
-# use geographical location by latitude and longitude given in json file
-# use intent.setPackage("com.google.android.apps.maps") to ensure the intent opens google maps specifically
+# Make location funtion
+display google maps by Intent object (messaging ibject) , used standard action Intent.ACTION_VIEW to tell the system i want to view something
+use geographical location by latitude and longitude given in json file
+use intent.setPackage("com.google.android.apps.maps") to ensure the intent opens google maps specifically
 <table>
   <tr>
     <td><img src="https://github.com/sherifelkady70/Klivvr_Task/blob/master/locatoin%20function.png" alt="Image 1" width="600" height="450"></td>
@@ -53,7 +54,7 @@ video of app for this step only.
 # image of app
 <table>
   <tr>
-    <td><img src="https://github.com/sherifelkady70/Klivvr_Task/blob/master/cities%20app%20image.jpg" alt="Image 1" width="600" height="450"></td>
+    <td><img src="https://github.com/sherifelkady70/Klivvr_Task/blob/master/cities%20app%20image.jpg" alt="Image 1" width="300" height="450"></td>
   </tr>
 </table>
 
