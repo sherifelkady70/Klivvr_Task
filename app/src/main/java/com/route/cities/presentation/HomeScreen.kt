@@ -27,6 +27,8 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.route.cities.data.models.City
 import com.route.cities.data.models.Coord
+import kotlinx.coroutines.flow.update
+import org.w3c.dom.Text
 
 @Composable
 fun HomeScreen(onClick: (City) -> Unit){
@@ -34,14 +36,13 @@ fun HomeScreen(onClick: (City) -> Unit){
 //    LaunchedEffect(key1 = Unit) {
 //        viewModel.getData()
 //    }
-    val searvhQ by viewModel.searchQuery.collectAsState()
+    val searchText by viewModel.searchQuery.collectAsState()
     Column(modifier = Modifier.padding(8.dp)){
         Spacer(modifier = Modifier.padding(10.dp))
         TextField(
-            value = searvhQ,
-            onValueChange = {viewModel.searchQuery.value},
-            Modifier.fillMaxWidth(),
-            label = { Text(text = "Search")})
+            value = searchText,
+            onValueChange = { viewModel.searchAlgorithm(it) },
+            Modifier.fillMaxWidth())
         Spacer(modifier = Modifier.padding(5.dp))
         LazyColumn {
             items(viewModel.state.value){ city ->
