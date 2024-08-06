@@ -29,9 +29,9 @@ import com.route.cities.data.models.Coord
 @Composable
 fun HomeScreen(onClick: (City) -> Unit){
     val viewModel = hiltViewModel<HomeScreenViewModel>()
-    LaunchedEffect(key1 = Unit) {
-        viewModel.getData()
-    }
+//    LaunchedEffect(key1 = Unit) {
+//        viewModel.getData()
+//    }
     Column(modifier = Modifier.padding(8.dp)){
         Spacer(modifier = Modifier.padding(10.dp))
         TextField(

@@ -36,6 +36,7 @@ class MainActivity : ComponentActivity() {
         Log.d("TAG","geo = $geoUri")
         val intent = Intent(Intent.ACTION_VIEW, Uri.parse(geoUri))
         if (intent.resolveActivity(packageManager) != null) {
+            intent.setPackage("com.google.android.apps.maps")
             startActivity(intent)
         } else {
             Toast.makeText(this, "Google Maps is not available", Toast.LENGTH_SHORT).show()

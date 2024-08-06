@@ -17,6 +17,10 @@ class HomeScreenViewModel @Inject constructor(
 ): ViewModel() {
     val state = mutableStateOf<List<City>>(listOf())
     var filteredList = mutableStateOf<List<City>>(listOf())
+
+    init {
+        getData()
+    }
     fun getData() {
         viewModelScope.launch(Dispatchers.IO) {
             val cities = citiesRepo.getCities()
