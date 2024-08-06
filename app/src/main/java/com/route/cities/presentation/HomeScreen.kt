@@ -46,6 +46,7 @@ fun HomeScreen(onClick: (City) -> Unit){
     }
     Column(modifier = Modifier.padding(8.dp)){
         Spacer(modifier = Modifier.padding(10.dp))
+
         SearchBar(query = text,
             onQueryChange = {text = it},
             onSearch = {viewModel.searchAlgorithm(it)},
@@ -59,11 +60,16 @@ fun HomeScreen(onClick: (City) -> Unit){
                 Icon(imageVector =Icons.Default.Search , contentDescription = "Search Icon")
             },
             trailingIcon = {
-                if(active){
-
+                if (active) {
+                    Icon(modifier = Modifier.clickable {
+                        if (text.isNotEmpty()) {
+                            text = ""
+                        } else {
+                            active = false
+                        }
+                    }, imageVector = Icons.Default.Close, contentDescription = "Close Icon")
                 }
-                Icon(imageVector = Icons.Default.Close, contentDescription = "Close Icon")
-            }) {
+            }){
 
         }
         Spacer(modifier = Modifier.padding(5.dp))
