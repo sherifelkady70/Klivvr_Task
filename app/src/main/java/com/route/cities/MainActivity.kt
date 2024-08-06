@@ -4,6 +4,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -31,11 +32,13 @@ class MainActivity : ComponentActivity() {
         }
     }
     private fun locationOfCity(city: City){
-        val geoUri = "geo:${city.coord?.lat},${city.coord?.lon}?z=45"
+        val geoUri = "geo:${city.coord?.lat},${city.coord?.lon}?z=15"
         Log.d("TAG","geo = $geoUri")
         val intent = Intent(Intent.ACTION_VIEW, Uri.parse(geoUri))
-        if(intent.resolveActivity(packageManager)!=null){
+        if (intent.resolveActivity(packageManager) != null) {
             startActivity(intent)
+        } else {
+            Toast.makeText(this, "Google Maps is not available", Toast.LENGTH_SHORT).show()
         }
     }
 }

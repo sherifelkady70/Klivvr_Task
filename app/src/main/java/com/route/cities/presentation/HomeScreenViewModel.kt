@@ -1,13 +1,10 @@
 package com.route.cities.presentation
 
-import android.content.Intent
-import android.net.Uri
 import androidx.compose.runtime.mutableStateOf
-import androidx.core.content.ContextCompat.startActivity
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.route.cities.data.models.City
 import com.route.cities.data.contract.CitiesRepositoryInterface
+import com.route.cities.data.models.City
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
