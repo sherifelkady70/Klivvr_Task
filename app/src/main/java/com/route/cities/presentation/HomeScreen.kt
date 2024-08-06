@@ -52,7 +52,6 @@ fun HomeScreen(onClick: (City) -> Unit){
 }
 
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CityDetails(city:City, onClick:() -> Unit){
     Card(modifier = Modifier

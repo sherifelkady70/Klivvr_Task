@@ -16,6 +16,7 @@ import androidx.core.content.ContextCompat
 import com.route.cities.data.models.City
 import com.route.cities.presentation.HomeScreen
 import com.route.cities.ui.theme.CitiesTheme
+import com.route.cities.utils.NetworkCheck
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -35,7 +36,8 @@ class MainActivity : ComponentActivity() {
         val geoUri = "geo:${city.coord?.lat},${city.coord?.lon}?z=15"
         Log.d("TAG","geo = $geoUri")
         val intent = Intent(Intent.ACTION_VIEW, Uri.parse(geoUri))
-        if (intent.resolveActivity(packageManager) != null) {
+        if (NetworkCheck.isNetworkAvailable()) {
+            Log.d("TAG","network=${NetworkCheck.isNetworkAvailable()}")
             intent.setPackage("com.google.android.apps.maps")
             startActivity(intent)
         } else {
