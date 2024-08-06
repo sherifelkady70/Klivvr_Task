@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.route.cities.data.contract.CitiesRepositoryInterface
 import com.route.cities.data.models.City
+import com.route.cities.search.Trie
 import com.route.cities.search.repository.TrieRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -42,6 +43,16 @@ class HomeScreenViewModel @Inject constructor(
         }
     }
 
+
+    private fun buildTrie(cities:List<City>) : Trie {
+        val trie = Trie()
+        viewModelScope.launch{
+            cities.forEach { city ->
+                trie.insert(city.name!!)
+            }
+        }
+        return trie
+    }
 
 }
 
