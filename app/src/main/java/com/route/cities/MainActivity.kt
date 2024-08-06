@@ -1,5 +1,6 @@
 package com.route.cities
 
+import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -37,9 +38,14 @@ class MainActivity : ComponentActivity() {
         Log.d("TAG","geo = $geoUri")
         val intent = Intent(Intent.ACTION_VIEW, Uri.parse(geoUri))
         if (NetworkCheck.isNetworkAvailable()) {
-            Log.d("TAG","network=${NetworkCheck.isNetworkAvailable()}")
-            intent.setPackage("com.google.android.apps.maps")
-            startActivity(intent)
+            try{
+                Log.d("TAG", "network=${NetworkCheck.isNetworkAvailable()}")
+                intent.setPackage("com.google.android.apps.maps")
+                startActivity(intent)
+            }catch (e:ActivityNotFoundException){
+                intent.setPackage(null)
+                startActivity(intent)
+            }
         } else {
             Toast.makeText(this, "Google Maps is not available", Toast.LENGTH_SHORT).show()
         }
