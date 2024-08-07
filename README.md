@@ -60,3 +60,35 @@ use intent.setPackage("com.google.android.apps.maps") to ensure the intent opens
 
 video of app for second step only.
 [video](https://drive.google.com/file/d/1p_HvMGkx8UrLcyxHUERvjHQFDKb6YBHi/view?usp=drive_link)
+
+# Implementation of search functionality
+First make class and data class for Trie data structure .
+Trie : is good for store and retrieve the dynamic set of Strings or Keys and for searching for strings with common prefix.
+each node represents the single character of the string and The structure of the Trie is organized such that each path from a root node to the leaf node an end of the word node.
+<table>
+  <tr>
+    <td><img src="https://github.com/sherifelkady70/Klivvr_Task/blob/master/Trie%20Node.png" alt="Image 1" width="300" height="300"></td>
+  </tr>
+</table>
+<table>
+  <tr>
+    <td><img src="https://github.com/sherifelkady70/Klivvr_Task/blob/master/Trie%20class.png" alt="Image 1" width="300" height="300"></td>
+  </tr>
+</table>
+
+Make buildTrie Method to build trie for cities list and insert each word of city name in root .
+searchAlgoritm method to get the right prefix from user and filter the list based on it .
+then after get prefix string from user and filter list store new filtered list (results) in mutable state list to display in body of search bar.
+<table>
+  <tr>
+    <td><img src="https://github.com/sherifelkady70/Klivvr_Task/blob/master/searchAlgorithm%20and%20buildTrie.png" alt="Image 1" width="300" height="300"></td>
+  </tr>
+</table>
+
+searchCities method take prefix string from user and collect char and make searchAlgorithm on it .
+then take results list.
+<table>
+  <tr>
+    <td><img src="https://github.com/sherifelkady70/Klivvr_Task/blob/master/serachCities%20Method.png" alt="Image 1" width="300" height="300"></td>
+  </tr>
+</table>
