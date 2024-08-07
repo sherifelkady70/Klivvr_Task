@@ -95,3 +95,22 @@ then take results list.
 
 video of app after all thing without pagination or divide the data.
 [video](https://drive.google.com/file/d/1PrLHleP5ZMqgbXnKzC-HO0tVcp21vox0/view?usp=drive_link)
+
+# Add pagination
+first add pagination data class that have pagination informations and pagination method in CitiesDataManager.
+the getCitiesForPage method divides the all Cities list into pages based on the specified page size and returns a PaginatedData object containing the current page's data, page number, page size, and total page count.
+<table>
+  <tr>
+    <td><img src="https://github.com/sherifelkady70/Klivvr_Task/blob/master/pagination%20data%20class.png" alt="Image 1" width="300" height="300"></td>
+  </tr>
+    <tr>
+    <td><img src="https://github.com/sherifelkady70/Klivvr_Task/blob/master/pagination%20method.png" alt="Image 1" width="300" height="300"></td>
+  </tr>
+</table>
+
+in view model add loadNextPage method to load more data by page size .
+and i bind this method to button to load more if need.
+<table>
+  <tr>
+    <td><img src="https://github.com/sherifelkady70/Klivvr_Task/blob/master/laod%20next%20page%20method.png" alt="Image 1" width="300" height="300"></td>
+</table>
