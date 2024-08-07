@@ -70,10 +70,14 @@ fun HomeScreen(onClick: (City) -> Unit){
                 }
             }){
             LazyColumn {
+                if(active){
                 items(viewModel.filteredList.value){ city ->
                     CityDetails(city = city){
                         onClick(city)
                     }
+                }
+                }else{
+
                 }
             }
         }

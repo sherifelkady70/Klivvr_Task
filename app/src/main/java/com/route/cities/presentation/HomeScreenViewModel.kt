@@ -91,7 +91,7 @@ class HomeScreenViewModel @Inject constructor(
         // find all possible words starting with the query
         trie.findWords(node, query, results)
         // filter cities based on complete names and return the corresponding City objects
-        return allCities.filter { city ->
+        return _cities.value.data.filter { city ->
             results.contains(city.name)
         }
     }
