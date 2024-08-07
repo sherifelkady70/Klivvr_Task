@@ -34,12 +34,9 @@ import com.route.cities.data.models.City
 @Composable
 fun HomeScreen(onClick: (City) -> Unit){
     val viewModel = hiltViewModel<HomeScreenViewModel>()
-//    LaunchedEffect(key1 = Unit) {
-//        viewModel.getData()
-//    }
     val searchText by viewModel.searchQuery.collectAsState()
     var text by remember {
-        mutableStateOf("")
+        mutableStateOf(searchText)
     }
     var active by remember {
         mutableStateOf(false)
@@ -70,7 +67,13 @@ fun HomeScreen(onClick: (City) -> Unit){
                     }, imageVector = Icons.Default.Close, contentDescription = "Close Icon")
                 }
             }){
-
+            LazyColumn {
+                items(viewModel.filteredList.value){ city ->
+                    CityDetails(city = city){
+                        onClick(city)
+                    }
+                }
+            }
         }
         Spacer(modifier = Modifier.padding(5.dp))
         LazyColumn {

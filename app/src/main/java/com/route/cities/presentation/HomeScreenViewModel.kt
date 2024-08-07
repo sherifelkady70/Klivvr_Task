@@ -33,14 +33,10 @@ class HomeScreenViewModel @Inject constructor(
     private lateinit var trie: Trie
 
 
-//    private val _filteredList = MutableStateFlow<List<City>>(emptyList())
-//    val filteredList : StateFlow<List<City>> = _filteredList.asStateFlow()
+    private val _filteredList = MutableStateFlow<List<City>>(emptyList())
+    val filteredList : StateFlow<List<City>> = _filteredList.asStateFlow()
 
     init {
-        viewModelScope.launch {
-//            val cityList = state.value
-//            _cities.value = cityList
-        }
         getData()
     }
     private fun getData() {
@@ -48,17 +44,17 @@ class HomeScreenViewModel @Inject constructor(
             val cities = citiesRepo.getCities()
             withContext(Dispatchers.Main){
                 state.value = cities
+//                _filteredList.value = cities
             }
         }
     }
-
     fun searchAlgorithm(w:String){
         _searchQuery.value = w
        viewModelScope.launch {
            trie = buildTrie(state.value)
            searchQuery.collectLatest { query ->
                val results = searchCities(trie, query)
-               state.value = results
+               _filteredList.value = results
            }
         }
     }
@@ -71,7 +67,6 @@ class HomeScreenViewModel @Inject constructor(
     }
 
     private fun searchCities(trie: Trie, query: String): List<City> {
-//        val trie = Trie()
         val results = mutableListOf<String>()
         var node = trie.root
 
@@ -88,55 +83,5 @@ class HomeScreenViewModel @Inject constructor(
             results.contains(city.name)
         }
     }
-//    fun searchAlgorithm(query:String){
-//        viewModelScope.launch{
-//            state.value = search(query)
-//        }
-//    }
-//
-//    private fun insert(word: String) {
-//        var node = root
-//        for (char in word) {
-//            node = node.children.getOrPut(char) { TrieNode() }
-//        }
-//        node.isEndOfWord = true
-//    }
-//
-//    private suspend fun search(prefix: String): List<City> {
-//        val results = mutableListOf<City>()
-//        var node = root
-//        for (char in prefix) {
-//            node = node.children[char] ?: return emptyList()
-//        }
-//        findWords(node, prefix, results)
-//        return results
-//    }
-//
-//    private fun findWords(node: TrieNode, prefix: String, results: MutableList<City>) {
-//        if (node.isEndOfWord) {
-//            results.add(City(name = prefix))
-//        }
-//        for ((char, child) in node.children) {
-//            findWords(child, prefix + char, results)
-//        }
-//    }
-//    fun searchCities(trie:Trie , query:String) : List<City>{
-//        viewModelScope.launch{
-//            val results = mutableListOf<String>()
-//            var node = trie.root
-//            for (char in query) {
-//                node = node.children[char] ?: return emptyList()
-//            }
-//
-//            trieRepo.search(node, query, results)
-//
-//            // Filter cities based on complete names
-//            return citiesRepo.getCities().filter { city ->
-//                results.contains(city.name)
-//            }
-//        }
-//    }
-
-
 }
 
