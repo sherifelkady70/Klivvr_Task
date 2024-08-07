@@ -102,10 +102,7 @@ the getCitiesForPage method divides the all Cities list into pages based on the 
 <table>
   <tr>
     <td><img src="https://github.com/sherifelkady70/Klivvr_Task/blob/master/pagination%20data%20class.png" alt="Image 1" width="300" height="300"></td>
-  </tr>
-    <tr>
     <td><img src="https://github.com/sherifelkady70/Klivvr_Task/blob/master/pagination%20method.png" alt="Image 1" width="300" height="300"></td>
-  </tr>
 </table>
 
 in view model add loadNextPage method to load more data by page size .
@@ -113,4 +110,21 @@ and i bind this method to button to load more if need.
 <table>
   <tr>
     <td><img src="https://github.com/sherifelkady70/Klivvr_Task/blob/master/laod%20next%20page%20method.png" alt="Image 1" width="300" height="300"></td>
+</table>
+# Last images of App
+<table>
+  <tr>
+    <td><img src="https://github.com/sherifelkady70/Klivvr_Task/blob/master/start.jpg" alt="Image 1" width="200" height="350"></td>
+    <td><img src="https://github.com/sherifelkady70/Klivvr_Task/blob/master/2.jpg" alt="Image 2" width="200" height="350"></td>
+    <td><img src="https://github.com/sherifelkady70/Klivvr_Task/blob/master/3.jpg" alt="Image 1" width="200" height="350"></td>
+    <td><img src="https://github.com/sherifelkady70/Klivvr_Task/blob/master/IMG-20240807-WA0003.jpg" alt="Image 2" width="200" height="350"></td>
+  </tr>
+</table>
+<table>
+  <tr>
+    <td><img src="https://github.com/sherifelkady70/Klivvr_Task/blob/master/IMG-20240807-WA0006.jpg" alt="Image 1" width="200" height="350"></td>
+    <td><img src="https://github.com/sherifelkady70/Klivvr_Task/blob/master/IMG-20240807-WA0007.jpg" alt="Image 2" width="200" height="350"></td>
+    <td><img src="https://github.com/sherifelkady70/Klivvr_Task/blob/master/IMG-20240807-WA0008.jpg" alt="Image 1" width="200" height="350"></td>
+    <td><img src="https://github.com/sherifelkady70/Klivvr_Task/blob/master/end.jpg" alt="Image 2" width="200" height="350"></td>
+  </tr>
 </table>
