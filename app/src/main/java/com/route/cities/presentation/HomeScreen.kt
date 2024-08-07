@@ -48,7 +48,7 @@ fun HomeScreen(onClick: (City) -> Unit){
 
         SearchBar(query = text,
             onQueryChange = {text = it},
-            onSearch = {viewModel.searchAlgorithm(it)},
+            onSearch = {viewModel.searchAlgorithm(text)},
             active = active,
             onActiveChange = {active=it} ,
             modifier = Modifier.fillMaxWidth(),
@@ -70,14 +70,10 @@ fun HomeScreen(onClick: (City) -> Unit){
                 }
             }){
             LazyColumn {
-                if(active){
-                items(viewModel.filteredList.value){ city ->
-                    CityDetails(city = city){
+                items(viewModel.filteredList.value) { city ->
+                    CityDetails(city = city) {
                         onClick(city)
                     }
-                }
-                }else{
-
                 }
             }
         }

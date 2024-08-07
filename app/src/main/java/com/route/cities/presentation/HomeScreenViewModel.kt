@@ -54,6 +54,7 @@ class HomeScreenViewModel @Inject constructor(
                 val initialData = citiesRepo.getCitiesForPage(1)
                 _cities.value = initialData
 
+
                 Log.d("TAG","state.value = ${_cities.value}")
             }
 
@@ -107,6 +108,7 @@ class HomeScreenViewModel @Inject constructor(
                     data = currentData.data + nextPageData.data
                 )
             }
+            _cities.value = _cities.value
         }
     }
 }
