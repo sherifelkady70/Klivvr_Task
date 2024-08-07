@@ -13,6 +13,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -78,12 +79,14 @@ fun HomeScreen(onClick: (City) -> Unit){
         }
         Spacer(modifier = Modifier.padding(5.dp))
         LazyColumn {
-            items(viewModel.state.value){ city ->
+            items(viewModel.cities.value.data){ city ->
                 CityDetails(city = city){
                     onClick(city)
                 }
             }
-
+            item { Button(onClick = { viewModel.loadNextPage() }) {
+                Text(text = "Load More")
+            } }
         }
     }
 }

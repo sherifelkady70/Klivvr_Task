@@ -30,7 +30,7 @@ class CitiesDataManagerImpl @Inject constructor(
         return allCities
     }
 
-    fun getCitiesForPage(page: Int): PaginatedData<City> {
+    override fun getCitiesForPage(page: Int): PaginatedData<City> {
         val startIndex = (page - 1) * pageSize
         val endIndex = minOf(startIndex + pageSize, allCities.size)
         val pageData = allCities.subList(startIndex, endIndex)

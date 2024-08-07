@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.route.cities.data.PaginatedData
 import com.route.cities.data.contract.CitiesRepositoryInterface
 import com.route.cities.data.models.City
 import com.route.cities.search.Trie
@@ -14,6 +15,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
@@ -23,7 +25,16 @@ class HomeScreenViewModel @Inject constructor(
     private val citiesRepo : CitiesRepositoryInterface,
 ): ViewModel() {
     val root = TrieNode()
-    val state = mutableStateOf<List<City>>(listOf())
+    //val state = mutableStateOf<List<City>>(listOf())
+
+    private val _currentPage = MutableStateFlow(1)
+    val currentPage: StateFlow<Int> = _currentPage
+
+    private val _cities = MutableStateFlow<PaginatedData<City>>(PaginatedData(1, 20, 0, emptyList())) // Replace 20 with your desired page size
+    val cities: StateFlow<PaginatedData<City>> = _cities
+
+    private lateinit var allCities: List<City>
+
 
     private val _searchQuery = MutableStateFlow("")
     val searchQuery: StateFlow<String> = _searchQuery.asStateFlow()
@@ -37,15 +48,19 @@ class HomeScreenViewModel @Inject constructor(
     }
     private fun getData() {
         viewModelScope.launch(Dispatchers.IO) {
-            val cities = citiesRepo.getCities()
+            allCities= citiesRepo.getCities()
+            trie = buildTrie(allCities)
             withContext(Dispatchers.Main){
-                state.value = cities
+                val initialData = citiesRepo.getCitiesForPage(1)
+                _cities.value = initialData
+
+                Log.d("TAG","state.value = ${_cities.value}")
             }
-            trie = buildTrie(state.value)
+
         }
     }
-    fun searchAlgorithm(w:String){
-        _searchQuery.value = w
+    fun searchAlgorithm(searchText:String){
+        _searchQuery.value = searchText
         Log.d("TAG","searchQuery = ${_searchQuery.value}")
        viewModelScope.launch {
            Log.d("TAG","in getData() in view model${trie}")
@@ -76,8 +91,22 @@ class HomeScreenViewModel @Inject constructor(
         // find all possible words starting with the query
         trie.findWords(node, query, results)
         // filter cities based on complete names and return the corresponding City objects
-        return state.value.filter { city ->
+        return allCities.filter { city ->
             results.contains(city.name)
+        }
+    }
+
+    fun loadNextPage() {
+        viewModelScope.launch {
+            val currentPageValue = currentPage.value
+            val nextPageData = citiesRepo.getCitiesForPage(currentPageValue + 1)
+            _cities.update { currentData ->
+                currentData.copy(
+                    currentPage = nextPageData.currentPage,
+                    totalPages = nextPageData.totalPages,
+                    data = currentData.data + nextPageData.data
+                )
+            }
         }
     }
 }
