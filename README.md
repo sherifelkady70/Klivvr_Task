@@ -92,3 +92,6 @@ then take results list.
     <td><img src="https://github.com/sherifelkady70/Klivvr_Task/blob/master/serachCities%20Method.png" alt="Image 1" width="300" height="300"></td>
   </tr>
 </table>
+
+video of app after all thing without pagination or divide the data.
+[video](https://drive.google.com/file/d/1PrLHleP5ZMqgbXnKzC-HO0tVcp21vox0/view?usp=drive_link)
