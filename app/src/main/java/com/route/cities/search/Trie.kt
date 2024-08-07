@@ -1,9 +1,7 @@
 package com.route.cities.search
 
-class Trie : TrieInterface{
-
+class Trie {
     val root = TrieNode()
-
       fun insert(word: String) {
         var node = root
         for (char in word) {
@@ -11,18 +9,7 @@ class Trie : TrieInterface{
         }
         node.isEndOfWord = true
     }
-
-      fun search(prefix: String): List<String> {
-        val results = mutableListOf<String>()
-        var node = root
-        for (char in prefix) {
-            node = node.children[char] ?: return emptyList()
-        }
-        findWords(node, prefix, results)
-        return results
-    }
-
-     fun findWords(node: TrieNode, prefix: String, results: MutableList<String>) {
+    fun findWords(node: TrieNode, prefix: String, results: MutableList<String>) {
         if (node.isEndOfWord) {
             results.add(prefix)
         }
