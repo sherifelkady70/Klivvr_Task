@@ -111,7 +111,7 @@ and i bind this method to button to load more if need.
   <tr>
     <td><img src="https://github.com/sherifelkady70/Klivvr_Task/blob/master/laod%20next%20page%20method.png" alt="Image 1" width="300" height="300"></td>
 </table>
-# Last images of App
+# Final images of App 
 <table>
   <tr>
     <td><img src="https://github.com/sherifelkady70/Klivvr_Task/blob/master/start.jpg" alt="Image 1" width="200" height="350"></td>
